@@ -1,4 +1,3 @@
-@ignore
 Feature: Mail an existing diagram to someone else
   Scenario: Mail an existing diagram to someone else
     Given An already created class diagram
