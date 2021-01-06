@@ -184,7 +184,7 @@ public class Path {
 	}
 
 	public static void safeMkDir(File file, boolean errorIfFailed) {
-		boolean success = file.mkdir();
+		boolean success = file.mkdirs();
 		if (!success && errorIfFailed) {
 			throw new RuntimeException("Cannot make dir " + file.getAbsolutePath());
 		}
