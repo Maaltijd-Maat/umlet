@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Build and test'){
     steps {
+        sh 'mkdir -p /root/.config/UMLet'
         sh 'mvn clean install'
      }
     }
