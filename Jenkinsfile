@@ -8,11 +8,15 @@ pipeline {
   stages {
     stage('Build and test'){
     steps {
+    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh "exit 1"
+
         // Deze command is nodig omdat UMLet een verouderde API voor het aanmaken van folders gebruikt.
         // Het is teveel werk om te controlleren waar deze API aangeroepen wordt,
         // door middel van deze manier kan dit probleem omgezeild worden.
         sh 'mkdir -p /root/.config/UMLet'
         sh 'mvn clean install'
+        }
      }
     }
     stage('Generate report'){
