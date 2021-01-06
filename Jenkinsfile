@@ -9,8 +9,12 @@ pipeline {
     stage('Build and test'){
     steps {
         sh 'mvn clean install'
-        cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', jsonReportDirectory: '/var/jenkins_home/workspace/umlet_master/umlet-standalone', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
      }
     }
+    stage('Generate report'){
+        steps {
+            cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', jsonReportDirectory: '/var/jenkins_home/workspace/umlet_master/umlet-standalone', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+         }
+        }
   }
 }
