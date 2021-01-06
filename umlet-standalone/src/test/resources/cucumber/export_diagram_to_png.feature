@@ -1,4 +1,3 @@
-@ignore
 Feature: Test exporting class diagram to a png file
   Scenario: Export an existing diagram to a png file
     Given An already created class diagram (class_diagram.uxf in the resource folder)
