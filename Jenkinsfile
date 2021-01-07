@@ -19,23 +19,23 @@ pipeline {
         sh 'mkdir -p /root/.config/UMLet'
       }
     }
-  }
-  stage('Build and test') {
-    steps {
-      sh 'mvn clean install'
+    stage('Build and test') {
+      steps {
+        sh 'mvn clean install'
+      }
     }
   }
-}
-post {
-  always {
-    cucumber failedFeaturesNumber: -1,
-    failedScenariosNumber: -1,
-    failedStepsNumber: -1,
-    fileIncludePattern: '**/*.json',
-    jsonReportDirectory: '/var/jenkins_home/workspace/umlet_master/umlet-standalone',
-    pendingStepsNumber: -1,
-    skippedStepsNumber: -1,
-    sortingMethod: 'ALPHABETICAL',
-    undefinedStepsNumber: -1
+  post {
+    always {
+      cucumber failedFeaturesNumber: -1,
+      failedScenariosNumber: -1,
+      failedStepsNumber: -1,
+      fileIncludePattern: '**/*.json',
+      jsonReportDirectory: '/var/jenkins_home/workspace/umlet_master/umlet-standalone',
+      pendingStepsNumber: -1,
+      skippedStepsNumber: -1,
+      sortingMethod: 'ALPHABETICAL',
+      undefinedStepsNumber: -1
+    }
   }
 }
