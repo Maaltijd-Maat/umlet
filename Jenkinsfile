@@ -9,9 +9,8 @@ pipeline {
     stages {
         stage('Configure') {
             steps {
-                // Deze command is nodig omdat UMLet een verouderde API voor het aanmaken van folders gebruikt.
-                // Het is teveel werk om te controleren waar deze API aangeroepen wordt,
-                // door middel van deze manier kan dit probleem omgezeild worden.
+                // This command is needed because UMLet uses an outdated API for creating folders.
+                // It's too much work to check where this API is called, so with this way the problem can be avoided.
                 sh 'mkdir -p /root/.config/UMLet'
             }
         }
