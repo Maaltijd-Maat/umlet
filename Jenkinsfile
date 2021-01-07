@@ -16,12 +16,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install -Dmaven.test.skip=true'
+                sh 'mvn -B clean install -Dmaven.test.skip=true'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn surefire:test'
+                sh 'mvn -B test'
             }
         }
     }
