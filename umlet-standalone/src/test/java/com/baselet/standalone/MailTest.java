@@ -62,13 +62,8 @@ public class MailTest {
 
         GreenMailUser sender = mailServer.setUser(mail, username, password);
 
-        // Mail panel setup
-        CurrentGui.getInstance().setGui(new StandaloneGUI(Main.getInstance(), uxfClassDiagram));
-        StandaloneGUI gui = (StandaloneGUI) CurrentGui.getInstance().getGui();
-        gui.initGUI();
-        gui.open(diagramToSend);
 
-        MailPanel panel = gui.guiBuilder.getMailPanel();
+        MailPanel panel = new MailPanel();
         panel.tf_to.setText("receiver@localhost");
         panel.tf_subject.setText(subject);
         panel.ta_text.setText("");

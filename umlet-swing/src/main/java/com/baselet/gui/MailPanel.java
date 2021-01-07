@@ -370,7 +370,6 @@ public class MailPanel extends JPanel {
 			}
 
 			Notifier.getInstance().showInfo("Email sent");
-			closePanel();
 		}
 
 		catch (MessagingException e) {
