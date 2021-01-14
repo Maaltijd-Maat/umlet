@@ -5,10 +5,6 @@ pipeline {
             image 'maven:3.6.3-openjdk-8'
             args '-v /root/.m2:/root/.m2'
         }
-        docker {
-            image 'sonarsource/sonar-scanner-cli'
-            args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
-        }
     }
     stages {
         stage('Configure') {
@@ -18,6 +14,12 @@ pipeline {
                 sh 'mkdir -p /root/.config/UMLet'
             }
         }
+    }
+    docker {
+        image 'sonarsource/sonar-scanner-cli'
+        args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
+    }
+    stages {
         stage('SonarTests') {
             steps {
                 sh "/usr/local/bin/sonar-scanner --version"
