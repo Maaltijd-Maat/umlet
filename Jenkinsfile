@@ -1,9 +1,13 @@
 #!groovy​
 pipeline {
     agent {
-        maven {
+        docker {
             image 'maven:3.6.3-openjdk-8'
             args '-v /root/.m2:/root/.m2'
+        }
+        docker {
+            image 'sonarsource/sonar-scanner-cli'
+            args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
         }
     }
     stages {
@@ -16,9 +20,7 @@ pipeline {
         }
         stage('SonarTests') {
             steps {
-                docker.image('sonarsource/sonar-scanner-cli').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
-                    sh "/usr/local/bin/sonar-scanner --version"
-                }
+                sh "/usr/local/bin/sonar-scanner --version"
             }
         }
     }
