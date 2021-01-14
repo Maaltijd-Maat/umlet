@@ -15,8 +15,10 @@ pipeline {
             }
         }
         stage('SonarTests') {
-            docker.image('sonarsource/sonar-scanner-cli:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
-                sh "/usr/local/bin/sonar-scanner --version"
+            steps {
+                docker.image('sonarsource/sonar-scanner-cli:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
+                    sh "/usr/local/bin/sonar-scanner --version"
+                }
             }
         }
     }
