@@ -14,17 +14,11 @@ pipeline {
                 sh 'mkdir -p /root/.config/UMLet'
             }
         }
-    }
-    agent {
-        docker {
-            image 'sonarsource/sonar-scanner-cli'
-            args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
-        }
-    }
-    stages {
         stage('SonarTests') {
             steps {
-                sh "/usr/local/bin/sonar-scanner --version"
+                withSonarQubeEnv() {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
             }
         }
     }
