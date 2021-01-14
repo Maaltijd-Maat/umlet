@@ -15,9 +15,11 @@ pipeline {
             }
         }
     }
-    docker {
-        image 'sonarsource/sonar-scanner-cli'
-        args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
+    agent {
+        docker {
+            image 'sonarsource/sonar-scanner-cli'
+            args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
+        }
     }
     stages {
         stage('SonarTests') {
