@@ -14,14 +14,9 @@ pipeline {
                 sh 'mkdir -p /root/.config/UMLet'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'mvn -B clean install -Dmaven.test.skip=true'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn -B test'
+        stage('SonarTests') {
+            docker.image('sonarsource/sonar-scanner-cli:latest').inside('-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""') {
+                sh "/usr/local/bin/sonar-scanner --version"
             }
         }
     }
