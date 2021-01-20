@@ -14,7 +14,12 @@ pipeline {
                 sh 'mkdir -p /root/.config/UMLet'
             }
         }
-        stage('SonarTests') {
+        stage('Build') {
+            steps {
+                sh 'mvn -B clean install -Dmaven.test.skip=true'
+            }
+        }
+        stage('Sonar Scanner') {
             steps {
                 sh '''mvn sonar:sonar \\
   -Dsonar.projectKey=umlet \\
