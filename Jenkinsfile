@@ -16,13 +16,11 @@ pipeline {
         }
         stage('SonarTests') {
             steps {
-                withSonarQubeEnv('Default') {
                     sh '''sonar-scanner \\
                     -Dsonar.projectKey=umlet \\
                     -Dsonar.sources=. \\
                     -Dsonar.host.url=http://172.22.0.4:9000 \\
                     -Dsonar.login=c22385269461a84317fe3dd72e6dd766835c7b03'''
-                }
             }
         }
     }
