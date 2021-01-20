@@ -19,12 +19,12 @@ pipeline {
                 sh 'mvn -B clean install -Dmaven.test.skip=true'
             }
         }
+        /**
         stage('Test') {
             steps {
                 sh 'mvn -B test'
             }
         }
-        /**
         stage('Sonar Scanner') {
             steps {
                 sh '''mvn sonar:sonar \\
@@ -37,8 +37,18 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv(installationName: 'Default') {
-                    // You can override the credential to be used
                     sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Just in case something goes wrong, pipeline will be killed after a timeout
+                    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
                 }
             }
         }
