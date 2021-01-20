@@ -19,7 +19,7 @@ pipeline {
                 withSonarQubeEnv('Default') {
                     sh '''mvn sonar:sonar \\
                         -Dsonar.projectKey=umlet \\
-                        -Dsonar.host.url=http://127.0.0.1:9000 \\
+                        -Dsonar.host.url=http://172.22.0.4:9000 \\
                         -Dsonar.login=aee96827e217c752a8ff4844cdc449e4c632624c'''
                 }
             }
