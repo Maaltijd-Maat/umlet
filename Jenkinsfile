@@ -3,7 +3,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3.6.3-openjdk-8'
-            args '--net="sonarnet" -v /root/.m2:/root/.m2'
+            args '--net="software-validation_sonarnet" -v /root/.m2:/root/.m2'
         }
     }
     stages {
