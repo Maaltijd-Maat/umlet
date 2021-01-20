@@ -24,12 +24,22 @@ pipeline {
                 sh 'mvn -B test'
             }
         }
+        /**
         stage('Sonar Scanner') {
             steps {
                 sh '''mvn sonar:sonar \\
                 -Dsonar.projectKey=umlet \\
                 -Dsonar.host.url=http://172.22.0.2:9000 \\
                 -Dsonar.login=c22385269461a84317fe3dd72e6dd766835c7b03'''
+            }
+        }
+         */
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv(installationName: 'Default') {
+                    // You can override the credential to be used
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
             }
         }
     }
