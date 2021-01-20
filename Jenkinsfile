@@ -17,7 +17,10 @@ pipeline {
         stage('SonarTests') {
             steps {
                 withSonarQubeEnv('Default') {
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                    sh '''mvn sonar:sonar \\
+                        -Dsonar.projectKey=umlet \\
+                        -Dsonar.host.url=http://127.0.0.1:9000 \\
+                        -Dsonar.login=aee96827e217c752a8ff4844cdc449e4c632624c'''
                 }
             }
         }
