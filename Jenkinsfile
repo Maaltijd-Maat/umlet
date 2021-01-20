@@ -19,11 +19,11 @@ pipeline {
                 sh 'mvn -B clean install -Dmaven.test.skip=true'
             }
         }
-        /**
-         stage('Test') {steps {sh 'mvn -B test'}}stage('Sonar Scanner') {steps {sh '''mvn sonar:sonar \\
-         -Dsonar.projectKey=umlet \\
-         -Dsonar.host.url=http://172.22.0.2:9000 \\
-         -Dsonar.login=c22385269461a84317fe3dd72e6dd766835c7b03'''}}*/
+        stage('Test') {
+            steps {
+                sh 'mvn -B test'
+            }
+        }
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv(installationName: 'Default') {
