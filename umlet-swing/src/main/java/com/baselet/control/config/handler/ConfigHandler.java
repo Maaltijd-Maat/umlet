@@ -259,7 +259,7 @@ public class ConfigHandler {
 				outStream.close();
 			}
 		} catch (IOException ex) {
-			log.error("Error", ex);
+			log.error(ex.toString());
 		}
 	}
 
@@ -287,7 +287,7 @@ public class ConfigHandler {
 				inputStream.close();
 			}
 		} catch (Exception ex) {
-			log.error("Error", ex);
+			log.error(ex.toString());
 		}
 
 		return result;
@@ -299,7 +299,7 @@ public class ConfigHandler {
 			try {
 				return Integer.parseInt(result);
 			} catch (NumberFormatException e) {
-				log.error("Error", e);
+				log.error(e.toString());
 			}
 		}
 		return defaultValue;
@@ -325,7 +325,7 @@ public class ConfigHandler {
 				int y = Integer.parseInt(result.substring(result.indexOf(",") + 1));
 				return new Dimension(x, y);
 			} catch (NumberFormatException e) {
-				log.error("Error", e);
+				log.error(e.toString());
 			}
 		}
 		return defaultValue;
@@ -339,7 +339,7 @@ public class ConfigHandler {
 				int y = Integer.parseInt(result.substring(result.indexOf(",") + 1));
 				return new Point(x, y);
 			} catch (NumberFormatException e) {
-				log.error("Error", e);
+				log.error(e.toString());
 			}
 		}
 		return defaultValue;

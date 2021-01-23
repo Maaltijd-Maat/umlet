@@ -186,7 +186,7 @@ public class MainStandalone {
 			handler.getFileHandler().doExportAs(outputFormat, new File(outputFileName));
 			printToConsole("Conversion finished: \"" + inputFile.getAbsolutePath() + "\" to \"" + outputFileName + "\"");
 		} catch (Exception e) {
-			log.error("Error", e);
+			log.error(e.toString());
 		}
 	}
 
@@ -226,7 +226,7 @@ public class MainStandalone {
 
 			printToConsole("Generation finished: \"" + validInputFileNames + "\" to \"" + outputFile.getAbsolutePath() + "\"");
 		} catch (Exception e) {
-			log.error("Error", e);
+			log.error(e.toString());
 		}
 	}
 
@@ -297,7 +297,7 @@ public class MainStandalone {
 			Path.safeCreateFile(f, false);
 			new Timer("alreadyRunningChecker", true).schedule(new RunningFileChecker(tmpFile(), Main.getInstance()), 0, 1000);
 		} catch (Exception ex) {
-			log.error("Error", ex);
+			log.error(ex.toString());
 			return true;
 		}
 		return false;

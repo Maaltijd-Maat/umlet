@@ -66,7 +66,7 @@ public class CustomElementCompiler {
 					global_error = true;
 				}
 			} catch (Exception ex) {
-				log.error("Error", ex);
+				log.error(ex.toString());
 			}
 		}
 		else {
@@ -145,7 +145,7 @@ public class CustomElementCompiler {
 					try {
 						br.close();
 					} catch (IOException e) {
-						log.error("Error", e);
+						log.error(e.toString());
 					}
 				}
 			}
@@ -168,7 +168,7 @@ public class CustomElementCompiler {
 				try {
 					bw.close();
 				} catch (IOException e) {
-					log.error("Error", e);
+					log.error(e.toString());
 				}
 			}
 		}
