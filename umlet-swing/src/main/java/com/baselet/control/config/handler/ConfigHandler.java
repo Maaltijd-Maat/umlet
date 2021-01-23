@@ -24,6 +24,8 @@ import com.baselet.control.enums.generator.SortOptions;
 import com.baselet.control.util.Path;
 import com.baselet.control.util.RecentlyUsedFilesList;
 import com.baselet.gui.BaseGUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigHandler {
 
@@ -75,6 +77,8 @@ public class ConfigHandler {
 	private static final String GENERATE_CLASS_METHODS = "generate_class_methods";
 	private static final String GENERATE_CLASS_SIGNATURES = "generate_class_signatures";
 	private static final String GENERATE_CLASS_SORTINGS = "generate_class_sortings";
+
+	private static final Logger log = LoggerFactory.getLogger(ConfigHandler.class);
 
 	public static void loadConfig() {
 
@@ -255,7 +259,7 @@ public class ConfigHandler {
 				outStream.close();
 			}
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			log.error("Error", ex);
 		}
 	}
 
@@ -283,7 +287,7 @@ public class ConfigHandler {
 				inputStream.close();
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			log.error("Error", ex);
 		}
 
 		return result;
@@ -295,7 +299,7 @@ public class ConfigHandler {
 			try {
 				return Integer.parseInt(result);
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				log.error("Error", e);
 			}
 		}
 		return defaultValue;
@@ -321,7 +325,7 @@ public class ConfigHandler {
 				int y = Integer.parseInt(result.substring(result.indexOf(",") + 1));
 				return new Dimension(x, y);
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				log.error("Error", e);
 			}
 		}
 		return defaultValue;
@@ -335,7 +339,7 @@ public class ConfigHandler {
 				int y = Integer.parseInt(result.substring(result.indexOf(",") + 1));
 				return new Point(x, y);
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				log.error("Error", e);
 			}
 		}
 		return defaultValue;
