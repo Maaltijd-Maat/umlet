@@ -10,13 +10,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ExportToPngTest {
@@ -41,13 +37,7 @@ public class ExportToPngTest {
     }
 
     @Then("Verify that the exported png equals class_diagram.png in the resource folder")
-    public void verifyExportedClassDiagram() throws IOException {
-        BufferedImage expectedImage = ImageIO.read(new File("src/test/resources/cucumber/class_diagram.png"));
-        byte[] expectedImageBytes = ((DataBufferByte) expectedImage.getData().getDataBuffer()).getData();
-
-        BufferedImage actualImage = ImageIO.read(exportedClassDiagram);
-        byte[] actualImageBytes = ((DataBufferByte) actualImage.getData().getDataBuffer()).getData();
-
+    public void verifyExportedClassDiagram() {
         assertTrue(exportedClassDiagram.getAbsolutePath().endsWith(".png"));
     }
 }
