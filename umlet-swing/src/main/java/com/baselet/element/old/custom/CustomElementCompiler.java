@@ -145,7 +145,7 @@ public class CustomElementCompiler {
 					try {
 						br.close();
 					} catch (IOException e) {
-						e.printStackTrace();
+						log.error("Error", e);
 					}
 				}
 			}

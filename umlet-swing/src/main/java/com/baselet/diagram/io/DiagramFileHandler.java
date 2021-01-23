@@ -283,7 +283,7 @@ public class DiagramFileHandler {
 				try {
 					input.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Error", e);
 				}
 			}
 		}

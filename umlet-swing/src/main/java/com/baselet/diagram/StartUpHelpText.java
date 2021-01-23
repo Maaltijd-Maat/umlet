@@ -112,7 +112,7 @@ public class StartUpHelpText extends JEditorPane implements ContainerListener, C
 				try {
 					w.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Error", e);
 				}
 			}
 		}

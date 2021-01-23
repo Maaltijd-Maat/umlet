@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import com.baselet.control.util.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileClassLoader extends ClassLoader {
 
@@ -16,6 +18,8 @@ public class FileClassLoader extends ClassLoader {
     public FileClassLoader(ClassLoader parent) {
         super(parent);
     }
+
+    private static final Logger log = LoggerFactory.getLogger(FileClassLoader.class);
 
     @Override
     protected Class<?> findClass(String className) throws ClassNotFoundException {
@@ -48,7 +52,7 @@ public class FileClassLoader extends ClassLoader {
                 try {
                     dis.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.error("Error", e);
                 }
             }
 
@@ -56,7 +60,7 @@ public class FileClassLoader extends ClassLoader {
                 try {
                     fis.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.error("Error", e);
                 }
             }
         }
