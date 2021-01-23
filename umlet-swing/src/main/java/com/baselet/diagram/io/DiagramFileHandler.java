@@ -261,6 +261,7 @@ public class DiagramFileHandler {
 	}
 
 	public void doOpen() {
+		FileInputStream input = null;
 		try {
 			SAXParserFactory spf = SAXParserFactory.newInstance();
 			if (Config.getInstance().isSecureXmlProcessing()) {
@@ -271,12 +272,20 @@ public class DiagramFileHandler {
 				spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
 			}
 			SAXParser parser = spf.newSAXParser();
-			FileInputStream input = new FileInputStream(file);
+			input = new FileInputStream(file);
 			InputHandler xmlhandler = new InputHandler(handler);
 			parser.parse(input, xmlhandler);
 			input.close();
 		} catch (Exception e) {
 			log.error("Cannot open the file: " + file.getAbsolutePath(), e);
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -403,7 +412,6 @@ public class DiagramFileHandler {
 
 	/**
 	 * If the filename of the filechooser has no extension, the extension from the filefilter is added to the name
-	 * @param saveFileChooser2
 	 */
 	private File getFileWithExtension(JFileChooser fileChooser) {
 		String extension = "." + fileextensions.get(fileChooser.getFileFilter());
