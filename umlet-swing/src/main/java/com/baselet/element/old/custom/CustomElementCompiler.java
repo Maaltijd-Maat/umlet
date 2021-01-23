@@ -66,7 +66,7 @@ public class CustomElementCompiler {
 					global_error = true;
 				}
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				log.error("Error", ex);
 			}
 		}
 		else {
@@ -158,7 +158,7 @@ public class CustomElementCompiler {
 				try {
 					bw.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error("Error", e);
 				}
 			}
 		}
