@@ -52,7 +52,7 @@ public class FileClassLoader extends ClassLoader {
                 try {
                     dis.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.error("Error", e);
                 }
             }
 
