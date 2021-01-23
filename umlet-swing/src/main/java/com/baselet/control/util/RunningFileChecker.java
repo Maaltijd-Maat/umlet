@@ -1,5 +1,8 @@
 package com.baselet.control.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,6 +13,8 @@ public class RunningFileChecker extends TimerTask {
 
     private final File file;
     private final CanOpenDiagram canOpenDiagram;
+
+	private static final Logger log = LoggerFactory.getLogger(RunningFileChecker.class);
 
     public RunningFileChecker(File file, CanOpenDiagram canOpenDiagram) {
         this.canOpenDiagram = canOpenDiagram;
@@ -30,13 +35,13 @@ public class RunningFileChecker extends TimerTask {
                 canOpenDiagram.doOpen(filename);
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+			log.error("Error", ex);
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+					log.error("Error", e);
                 }
             }
         }
